@@ -1,6 +1,11 @@
 package chunk
 
-import "os"
+import (
+	"log"
+	"os"
+)
+
+const MAX_FILE_SIZE = 4096
 
 type Chunk struct {
 	chunkId string
@@ -20,4 +25,15 @@ func CreateChunk(chunkId string, path string) Chunk {
 func (chunk *Chunk) RecordAppend(dataToAppend []byte) {
 	chunk.filePtr.Seek(0, 2)
 	chunk.filePtr.Write(dataToAppend)
+}
+
+func (chunk *Chunk) GetSize() int64 {
+	test, err := chunk.filePtr.Stat()
+
+	if err != nil {
+		log.Fatal(err)
+		return -1
+	}
+
+	return test.Size()
 }
