@@ -22,5 +22,4 @@ func (counter *SafeCounter) Increment(key string, incrementNum int) {
 
 func main() {
 	fmt.Println("Hi")
-
 }

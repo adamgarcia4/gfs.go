@@ -1,0 +1,11 @@
+syntax = "proto3";
+package master;
+option go_package = "github.com/adamgarcia4/gfs.go/api/master";
+
+message Message {
+    string body = 1;
+}
+
+service ChatService {
+    rpc SayHello(Message) returns (Message) {}
+}
